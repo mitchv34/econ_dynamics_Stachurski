@@ -1,1 +1,1 @@
-# econ_dynamics_Stachurski
+# Economic Dynamics Theory and Computation - John Stachurski
