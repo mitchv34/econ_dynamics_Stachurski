@@ -132,4 +132,52 @@ Prove that $\|\cdot\|_{p}$ is a norm on $\mathbb{R}^{k}$ for $p=1$ and $p=\infty
     \end{enumerate}
 \end{proof}
 
+\begin{problem}
+    Let $\left(x_{n}\right)$ and $\left(y_{n}\right)$ be sequences in $S$. Show that if $x_{n} \rightarrow x \in S$ and $\rho\left(x_{n}, y_{n}\right) \rightarrow 0$, then $y_{n} \rightarrow x$
+\end{problem}
+
+\begin{proof}
+    Recall that:
+    $$x_n \to x \qiffq \forall\varepsilon_1 > 0 \: \exists N_1\in \mathbb{N} \mid \rho(x_n,x)< \varepsilon_1$$
+
+    and 
+
+    $$\rho(x_n,y_n) \to 0 \qiffq \forall\varepsilon_1 > 0 \: \exists N_2\in \mathbb{N} \mid |\rho(x_n,y_n)|< \varepsilon_2$$
+
+    Then consider $\rho(y_n,x)$ and note that
+    $$\rho(y_n,x)<\rho(x_n,y_n) + \rho(x_n,x) \leq \varepsilon = \varepsilon_1 + \varepsilon_2 \qquad \forall \:n > \max\{N_1,N_2\}$$
+\end{proof}
+
+\begin{problem}
+    Let $\left(x_{n}\right) \subset S$ and $x \in S$. Show that $x_{n} \rightarrow x$ if and only if for all $\varepsilon>0$, the ball $B(\varepsilon ; x)$ contains all but finitely many terms of $\left(x_{n}\right)$.
+\end{problem}
+
+\begin{proof}[Answer]
+    It follows from the definition of convergence that:
+    $$x_n \to x \qiffq \forall \varepsilon > 0 \: \exists N \in \mathbb{N} \mid \rho(x_n,x)< \varepsilon \qiffq x_n \in B(\varepsilon; x) \forall n \geq N$$
+    This means that only the $N$ first terms of the sequence are \textbf{not} in the ball $B(\varepsilon;x)$.
+\end{proof}
+
+\begin{problem}
+    Show that every convergent sequence in $S$ is also bounded.
+\end{problem}
+
+\begin{proof}[Answer]
+    Recall that a subset $E$ of $S$ is called bounded if $E \subset B(n ; x)$ for some $x \in S$ and some (suitably large) $n \in \mathbb{N}$. A sequence $\left(x_{n}\right)$ in $S$ is called bounded if its range $\left\{x_{n}: n \in \mathbb{N}\right\}$ is a bounded set.
+
+    Assume that $(x_n)$ is a convergent sequence then and select any $\varepsilon>0$ we know that thre is $N$ such that $x_n\in B(\varepsilon; x)$ for all $n>N$.
+
+    For all $x_n$ with $n\leq N$ define $\delta_n = \rho(x_n, x) + 0.1$ then and $\bar{\varepsilon} = \max\{\delta_1,\ldots,\delta_N,\varepsilon\}$. It is clear by construction that $\rho(x_n,x)\leq \bar{\varepsilon}$ thus $\{x_n\}_{n=1}^\infty \subset B(\bar{\varepsilon; x})$, therefore the sequence is bounded.
+\end{proof}
+
+\begin{problem}
+    Show that for $\left(x_{n}\right) \subset S, x_{n} \rightarrow x$ for some $x \in S$ if and only if ever subsequence of $\left(x_{n}\right)$ converges to $x$.
+\end{problem}
+
+\begin{proof}
+    Sufficiency is trivial since the whole sequence is a subsequence of itself.
+
+    To show necessity consider $x_n\to x$ and a subsequence $\{x_{k_n}\}\subset\{x_{n}\}$ since subsequences are defined by increasing functions we know that if the term $x_n$ is "behind" $x_m$ in the original seuqnces then and those terms are in a subsequence then the ordering is preserved. Then for any $varepsilon>0$ we have that there is a term $x_N$ such that for any term  $x_n$ with $n>N$ $\rho(x_n, x_n)<\varepsilon$. Then let consider $x_{k_{N}}$ the first term in the subsequence that corresponds to $x_N$ in the original sequence this means that any terms that follow $x_{k_{N}}$ is close enough to $x$ so the definition of convergence holds.
+\end{proof}
+
 \end{document}
