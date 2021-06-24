@@ -1,0 +1,135 @@
+
+% Documents
+\documentclass{article}
+
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage[margin = 1in, top=2cm]{geometry}% Margins
+\usepackage[spanish,english]{babel}
+\usepackage{apacite}
+\usepackage[round]{natbib}
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage{svg}
+\usepackage{setspace} % Setting the spacing between lines
+\usepackage{amsthm, amsmath, amsfonts, mathtools, amssymb, bm} % Math packages 
+\usepackage{graphicx}
+\usepackage{pgfplots}
+\usepackage{subfig} % Manipulation and reference of small or sub figures and tables
+\usepackage{hyperref} % To create hyperlinks within the document
+\usepackage{appendix}
+\usepackage{xcolor}
+\usepackage{cancel}
+\usepackage{enumerate}
+\usepackage[shortlabels]{enumitem}
+\usepackage{optidef}
+\usepackage[round]{natbib}
+
+% Options
+\setlength{\parindent}{2em}
+\setlength{\parskip}{0.2em}
+\spacing{1.15}
+
+% My Enviroments
+\newtheorem{defin}{Definition.}
+\newtheorem{teo}{Theorem. }
+\newtheorem{lema}{Lemma. }
+\newtheorem{coro}{Corolary. }
+\newtheorem{prop}{Proposition. }
+%\theoremstyle{definition}
+\newtheorem{examp}{Example. }
+\newtheorem{problem}{Problem}
+\newtheorem{subproblem}{}[problem]
+% \numberwithin{problem}{subsection} 
+
+% My commands
+\newcommand{\card}{\operatorname{card}}
+\newcommand{\qiq}{\qquad \implies \qquad}
+\newcommand{\qiffq}{\qquad \iff \qquad}
+\newcommand{\qaq}{\qquad \textbf{and} \qquad}
+\newcommand{\qoq}{\qquad \textbf{or} \qquad}
+\newcommand{\settf}{\text{ \emph{:} }}
+\newcommand{\chbox}{\makebox[0pt][l]{$\square$}\raisebox{.15ex}{\hspace{.9em}}}
+\newcommand{\cchbox}{\makebox[0pt][l]{$\square$}\raisebox{.15ex}{\hspace{0.1em}$\checkmark$}}
+
+\title{Economic Dynamics Theory and Computation\newline Excercises Chapter 3}
+\author{Mitchell Valdés-Bobes}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\begin{problem}
+    Let $\|\cdot\|$ on $\mathbb{R}^{k}$ be a norm that generates a metric $\rho$ on $\mathbb{R}^{k}$ via $\rho(x, y):=\|x-y\|$. 
+    Show that $\rho$ is indeed a metric, in the sense that it satisfies the three axioms in the definition.
+\end{problem}
+
+\begin{proof}[Answer]
+    Recall the definition of norm:
+    \begin{defin}
+        A norm on $\mathbb{R}^{k}$ is a mapping $\mathbb{R}^{k} \ni x \mapsto\|x\| \in \mathbb{R}$ such that, for any $x, y \in \mathbb{R}^{k}$ and any $\gamma \in \mathbb{R}$
+        \begin{enumerate}
+            \item $\|x\|=0$ if and only if $x=0$
+            \item $\|\gamma x\|=|\gamma|\|x\|$, and
+            \item $\|x+y\| \leq\|x\|+\|y\|$.
+        \end{enumerate}
+    \end{defin}
+    and the definition of metric:
+    \begin{defin}
+    A metric space is a nonempty set $S$ and a metric or distance $\rho: S \times S \rightarrow$ $\mathbb{R}$ such that, for any $x, y, v \in S$,
+        \begin{enumerate}
+            \item $\rho(x, y)=0$ if and only if $x=y$,
+            \item $\rho(x, y)=\rho(y, x)$, and
+            \item $\rho(x, y) \leq \rho(x, v)+\rho(v, y)$.
+        \end{enumerate}
+    \end{defin}
+
+    To show that the propoerties of metric hold for $\rho$ consider:
+    \begin{enumerate}
+        \item $\rho(x,y)=0\iff\|x-y\|=0\iff x-y=0\iff x=y$  for any $x,y \in S$.
+        \item $\rho(x,y)=\|x-y\|=\|y-x\|=\rho(y,x)$ for any $x,y \in S$
+        \item $\rho(x,y)=\|x-y\|=\|(x-z)+(z-y)\|\leq\|x-z\|+ \|y-z\| = \rho(x,z) + \rho(y,z)$ for any $x,y,z\in S$
+    \end{enumerate}
+
+\end{proof}
+
+\begin{problem}
+    Let $\|\cdot\|$ be a norm on $\mathbb{R}^{k}$. Show that for any $x, y \in \mathbb{R}^{k}$ we have $\mid\|x\|-$ $\|y\| \mid \leq\|x-y\| .$
+\end{problem}
+\begin{proof}[Answer]
+    Assume w.l.o.g. that $\|x\| \geq \|y\|$ then
+    $$\big |\|x\|-\|y\|\big| = \|x\|-\|y\|$$
+    and 
+    $$\|x\| = \|x-y + y \| \leq \|x-y\| + \|y\| \qiq \|x\| - \|y\| \leq \|x-y\|$$
+\end{proof}
+
+\begin{problem}
+    Consider the family of norms $\|\cdot\|_{p}$ defined by
+$$
+\|x\|_{p}:=\left(\sum_{i=1}^{k}\left|x_{i}\right|^{p}\right)^{1 / p} \quad\left(x \in \mathbb{R}^{k}\right)
+$$
+where $p \geq 1$, and 
+$$\|x\|_{\infty}:=\max _{1 \leq i \leq k}\left|x_{i}\right|$$
+
+Prove that $\|\cdot\|_{p}$ is a norm on $\mathbb{R}^{k}$ for $p=1$ and $p=\infty$.
+\end{problem}
+\begin{proof}[Answer]
+    Start with $p=1$:
+    \begin{enumerate}
+        \item $\|x\|_1=0 \iff \sum_{i=1}^{k}\left|x_{i}\right| = 0 \iff |x_i| = 0 \: \forall i=1,\ldots,k \iff  x = 0$
+        \item $\|\lambda x\|_1 = \sum_{i=1}^{k}\left|\lambda x_{i}\right| \sum_{i=1}^{k}|\lambda|\left|x_{i}\right| = |\lambda|\sum_{i=1}^{k}\left|x_{i}\right| = |\lambda| \|x\|_1$ for all $x\in \mathbb{R}^k$, $lambda\in \mathbb{R}$
+        \item $\|x + y\|_1 = \sum_{i=1}^{k}\left|x_{i} + y_i\right|$ since $|x_i + y_i|\leq |x_i| + |y_i|$ for all $i=1,\ldots, k$ then $\|x + y\|_1\leq \|x \|_1 + \| y\|_1$ for all $x,y\in \mathbb{R}^k$
+    \end{enumerate}
+    Then the proof is complete.
+
+    For the case when $p=\infty$:
+    \begin{enumerate}
+        \item $\|x\|_\infty=0 \iff \max _{1 \leq i \leq k}\left|x_{i}\right| = 0 \iff 0 \leq \left|x_{i}\right| \leq  \max _{1 \leq i \leq k}\left|x_{i}\right|  = 0 \:  \forall i=1,\ldots,k \iff  x = 0$ 
+        \item $\|\lambda x\|_\infty = \max _{1 \leq i \leq k}\left|\lambda x_{i}\right| =\max _{1 \leq i \leq k}\left|\lambda| |x_{i}\right| = |\lambda| \max _{1 \leq i \leq k}\left|x_{i}\right| = |\lambda| \|x\|_\infty$ for all $x\in \mathbb{R}^k$, $lambda\in \mathbb{R}$
+        \item $\| x + y\|_\infty = \max _{1 \leq i \leq k}\left|x_{i} + y_{i}\right|=\left|x_{j} + y_{j}\right|$ for some $j\in 1,\ldots , k$; then
+              $\left|x_{j} + y_{j}\right| \leq |x_j| + |y_j| \leq \max _{1 \leq i \leq k}\left|x_{i}\right| + \max _{1 \leq i \leq k}\left|y_{i}\right| = \|x\|_\infty+\|y\|_\infty$  for all $x,y\in \mathbb{R}^k$
+    \end{enumerate}
+\end{proof}
+
+\end{document}
