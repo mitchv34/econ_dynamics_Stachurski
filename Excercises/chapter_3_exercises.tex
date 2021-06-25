@@ -178,6 +178,46 @@ Prove that $\|\cdot\|_{p}$ is a norm on $\mathbb{R}^{k}$ for $p=1$ and $p=\infty
     Sufficiency is trivial since the whole sequence is a subsequence of itself.
 
     To show necessity consider $x_n\to x$ and a subsequence $\{x_{k_n}\}\subset\{x_{n}\}$ since subsequences are defined by increasing functions we know that if the term $x_n$ is "behind" $x_m$ in the original seuqnces then and those terms are in a subsequence then the ordering is preserved. Then for any $varepsilon>0$ we have that there is a term $x_N$ such that for any term  $x_n$ with $n>N$ $\rho(x_n, x_n)<\varepsilon$. Then let consider $x_{k_{N}}$ the first term in the subsequence that corresponds to $x_N$ in the original sequence this means that any terms that follow $x_{k_{N}}$ is close enough to $x$ so the definition of convergence holds.
+
+\end{proof}
+
+\begin{problem}
+    Let $f ( x, y ) = x^2 + y^2$ . Show that $f$ is a continuous function from
+    $(\mathbb{R}^2 , d_2 )$ into $(\mathbb{R} , | \cdot |)$.
+    
+\end{problem}
+
+\begin{proof}[Answer]
+    \begin{align*}
+        (x_n,y_n)\to (x,y)  & \qiffq x_n \to x \qaq y_n \to y \\ &\qiffq x_n^2 \to x^2 \qaq y_n^2 \to y^2\\ 
+                            &\qiffq \forall \frac{\varepsilon}{2} \exists N \in \mathbb{N}\:\mid \forall n>N \quad |x_n^2 - x^2|<\frac{\varepsilon}{2} \qaq |y_n^2 - y^2|<\frac{\varepsilon}{2}\\
+                            &\qiffq \forall \varepsilon>0 \quad |(x_n^2+y_n^2) - (x^2+y^2)|\leq |x_n^2 - x^2| + |y_n^2 - y^2| < \varepsilon\\
+                            &\qiffq f(x_n,y_n)\to f(x,y)
+    \end{align*}
+\end{proof}
+
+\begin{problem}
+    Let $f$ and $g$ be as above, and let $S$ be a metric space. Show that if $f$ and $g$ are continuous, then so are $f+g$ and $f g$.
+\end{problem}
+
+\begin{proof}[Answer]
+    
+\end{proof}
+
+\begin{problem}
+    A function $f: S \rightarrow \mathbb{R}$ is called upper-semicontinuous (usc) at $x \in S$ if, for every $x_{n} \rightarrow x$, we have $\lim \sup _{n} f\left(x_{n}\right) \leq f(x) ;$ and lower-semicontinuous (lsc) if, for every $x_{n} \rightarrow x$, we have $\lim \inf _{n} f\left(x_{n}\right) \geq f(x)$. Show that $f$ is usc at $x$ if and only if $-f$ is $\operatorname{lsc}$ at $x$. Show that $f$ is continuous at $x$ if and only if it is both usc and lsc at $x$. 
+\end{problem}
+
+\begin{proof}[Answer]
+    Recall that
+    $$\liminf a_{n}:=\lim _{n \rightarrow \infty} \inf _{k \geq n} a_{k} \qaq \lim \sup a_{n}:=\lim _{n \rightarrow \infty} \sup _{k \geq n} a_{k}$$
+
+    Let $f$ be an uper-semicontinuous function then:
+    $$x_n \to x \qiq   \lim \sup _{n} f\left(x_{n}\right) \leq f(x)$$
+    Note that  $$\forall n \qquad  \sup_{k\geq n} f(x_k) = -\inf_{k\geq n} -f(x_k) $$
+    Therefore
+    $$\lim \sup _{n} f\left(x_{n}\right) \leq f(x) \qiq -\lim \sup _{n} f\left(x_{n}\right)= \lim \inf _{n} f\left(x_{n}\right)\geq -f(x)$$
+    
 \end{proof}
 
 \end{document}
