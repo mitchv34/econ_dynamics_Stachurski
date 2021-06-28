@@ -59,7 +59,9 @@
 \begin{document}
 
 \maketitle
+\section{Analysis in Metric Space}
 
+\subsection{Distances and Norms}
 \begin{problem}
     Let $\|\cdot\|$ on $\mathbb{R}^{k}$ be a norm that generates a metric $\rho$ on $\mathbb{R}^{k}$ via $\rho(x, y):=\|x-y\|$. 
     Show that $\rho$ is indeed a metric, in the sense that it satisfies the three axioms in the definition.
@@ -132,6 +134,7 @@ Prove that $\|\cdot\|_{p}$ is a norm on $\mathbb{R}^{k}$ for $p=1$ and $p=\infty
     \end{enumerate}
 \end{proof}
 
+\subsection{Sequences}
 \begin{problem}
     Let $\left(x_{n}\right)$ and $\left(y_{n}\right)$ be sequences in $S$. Show that if $x_{n} \rightarrow x \in S$ and $\rho\left(x_{n}, y_{n}\right) \rightarrow 0$, then $y_{n} \rightarrow x$
 \end{problem}
@@ -216,8 +219,358 @@ Prove that $\|\cdot\|_{p}$ is a norm on $\mathbb{R}^{k}$ for $p=1$ and $p=\infty
     $$x_n \to x \qiq   \lim \sup _{n} f\left(x_{n}\right) \leq f(x)$$
     Note that  $$\forall n \qquad  \sup_{k\geq n} f(x_k) = -\inf_{k\geq n} -f(x_k) $$
     Therefore
+    
     $$\lim \sup _{n} f\left(x_{n}\right) \leq f(x) \qiq -\lim \sup _{n} f\left(x_{n}\right)= \lim \inf _{n} f\left(x_{n}\right)\geq -f(x)$$
+
+    For the second part is easier to use the $(\varepsilon-\delta)$ definition of a (lowe and upper semi-)continuous funciton:
+
+    \begin{defin}[Continuous Function]
+        $f: S \rightarrow \mathbb{R}$ is continuous at a point $x\in S$ if for any $\varepsilon>0$ there is $\delta >0$ such that if $\|x_n - x\|<\delta$ then $|f(x_n)-f(x)|<\varepsilon$.
+    \end{defin}
+
+    \begin{defin}[Upper Semi-Continuous Function]
+        $f: S \rightarrow \mathbb{R}$ is upper semi-continuous at a point $x\in S$ if for any $\varepsilon>0$ there is $\delta >0$ such that if $\|x_n - x\|<\delta$ then $f(x_n)<f(x)+\varepsilon$.
+    \end{defin}
+    
+    \begin{defin}[Lower Semi-Continuous Function]
+        $f: S \rightarrow \mathbb{R}$ is lower semi-continuous at a point $x\in S$ if for any $\varepsilon>0$ there is $\delta >0$ such that if $\|x_n - x\|<\delta$ then $f(x) - \varepsilon<f(x_n)$.
+    \end{defin}
+
+    Since the requirement of continuity is equivalent to the requirements for upper and lower semi-continuity to hold at the same time i.e:
+    $$|f(x_n)-f(x)|<\varepsilon \qiffq f(x) -\varepsilon < f(x_n) \qaq f(x_n) < f(x) + \varepsilon$$
+
+    then the result follows from the definitions.
+
+\end{proof}
+\subsection{Open Sets, Closed Sets}
+\begin{problem}
+    Show that a point in $S$ adheres to $E \subset S$ if and only if it is the limit of a sequence contained in $E$.
+\end{problem}
+
+\begin{proof}[Answer]
+    Reccall that
+
+    $$x \in S \text { adheres to } E \subset S \text { if, for each } \varepsilon>0 \quad  B(\varepsilon ; x)\cap E \neq \emptyset$$
+
+    First we will contruct a seuqnce of elements of $E$ that converges to $x$. Consider a sequence of real numbers $\varepsilon_n \to 0$ and a corresponding sequence 
+    $$x_n \in B(\varepsilon_n ; x)\cap E \qiq \{x_n\}\subset E \qaq x_n \to x$$
+
+    Second, assume that there is a seuqence $\{x_n\}\subset E$ with $x_n \to x$. Then by definition of convergence for any $\varepsilon>0$ exist $N$ such that for all $n>N$ $\rho(x, x_n)<\varepsilon$ this menas that for all $n>N$ $x_n \in  B(\varepsilon; x) \implies B(\varepsilon; x) \cap E \neq \emptyset$, therefore $x$ adheres to $E$. 
+\end{proof}
+
+\begin{problem}
+    Prove \textbf{Theorem 3.1.17}:
+
+        A set $F \subset S$ is closed if and only if for every convergent sequence entirel. contained in $F$, the limit of the sequence is also in $F$.
+\end{problem}
+
+
+\begin{proof}[Answer]
+    Consider the following sequence of equivalences: 
+    \begin{itemize}
+        \item By the previous problem $x$ adheres to $F$ if and only if there is a seuqnce of elements of $F$ that converges to $x$.
+        \item By definition of closed set, $F$ is closed if and only if it contains al points that adhere to $F$.
+        \item Then we can conclude that $F$ is closed if and only if the limit of any convergent sequence of elements of $F$ is in $F$.
+    \end{itemize}
     
 \end{proof}
 
+\begin{problem}
+    Prove \textbf{Theorem 3.1.18}:
+
+    A subset of an arbitrary metric space $S$ is open if and only if its complement is closed, and closed if and only if its complement is open.
+\end{problem}
+
+\begin{proof}[Answer]
+    Consider $C\subset S$:
+    \begin{align*}
+        C\text{ is closed } &\qiffq C \text{ contains all points that adhere to } C \\
+        &\qiffq x \text{ does not adhere to } C\qiffq x \in C^c \\
+        &\qiffq \exists \varepsilon>0 \text{ such that } B(\varepsilon; x) \cap C = \emptyset\\
+        &\qiffq B(\varepsilon; x) \subset C^c \qiffq x \text{ is an interior point of } C^c\\
+        &\qiffq C^c \text{ contais all of it's interior points } \qiffq C^c \text{ is open}
+    \end{align*}
+\end{proof}
+
+\begin{problem}
+    Every open ball $B(\epsilon ; x)$ in $S$ is an open set. Prove this directly, or repeat the steps of the previous problem applied to $B(\epsilon ; x)^{c}$.
+\end{problem}
+
+\begin{proof}[Answer]
+    
+\end{proof}
+
+\begin{problem}
+Argue that for any metric space $(S, \rho)$, the empty set $\varnothing$ is both open and closed.
+\end{problem}
+
+\begin{proof}[Answer]
+    Since the empty set contai no elements, it is correct to say that all elements in the empty set have any desired property, in particular it is correct to say that they are interior or that they adhere.
+\end{proof}
+
+\begin{problem}
+Show that if $(S, \rho)$ is an arbitrary metric space, and if $x \in S$, then the set $\{x\}$ is always closed.
+\end{problem}
+
+\begin{proof}[Answer]
+    Let $\{x_n\}\subset \{x\}$ then $x_n = x$ for all $n\in \mathbb{N}$ then $x_n\to x\in \{x\}$, since all convergent sequences in $\{ x\}$ conver to elements of $\{ x\}$ then $\{ x\}$ is closed.
+\end{proof}
+
+\begin{problem}
+Prove that a sequence converges to a point $x$ if and only if the sequence is eventually in every open set containing $x$.
+\end{problem}
+
+\begin{proof}[Answer]
+    Let $x_n\to x\in \{x\}$ and $A\subset S$ an open set such that $x\in A$ since $A$ is open then for some $\varepsilon>0$ c and by the definition of convergent seuqence we have that for some $N\in \mathbb{N}$ $x_n\in B(\varepsilon;x)\subset A$.
+\end{proof}
+
+\begin{problem}
+Prove: If $\left\{G_{\alpha}\right\}_{\alpha \in A}$ are all open, then so is $\cup_{\alpha \in A} G_{\alpha}$.
+\end{problem}
+
+\begin{proof}[Answer]
+    Let $x\in \cup_{\alpha \in A} G_{\alpha}$ then $x\in G_\alpha$ for some $\alpha \in A$ then there is $\varepsilon >0 $ such that $B(\varepsilon; x)\subset G_\alpha \subset \cup_{\alpha \in A} G_{\alpha}$ therefore $x$ is interior thus $\cup_{\alpha \in A} G_{\alpha}$ is open.
+\end{proof}
+
+\begin{problem}
+Show that if $A$ is finite and $\left\{G_{\alpha}\right\}_{\alpha \in A}$ is a collection of open sets, then $\cap_{\alpha \in A} G_{\alpha}$ is also open.
+\end{problem}
+
+\begin{proof}[Answer]
+    
+\end{proof}
+
+\begin{problem}
+Show that $\cap_{n \in \mathbb{N}}(a-1 / n, b+1 / n)=[a, b]$.
+\end{problem}
+
+\begin{proof}[Answer]
+    
+\end{proof}
+
+\begin{problem}
+Prove that if $\left\{F_{\alpha}\right\}_{\alpha \in A}$ are all closed, then so is $\cap_{\alpha \in A} F_{\alpha}$.
+\end{problem}
+
+\begin{proof}[Answer]
+    
+\end{proof}
+
+\begin{problem}
+Show that if $A$ is finite and $\left\{F_{\alpha}\right\}_{\alpha \in A}$ is a collection of closed sets, then $\cup_{\alpha \in A} F_{\alpha}$ is closed. On the other hand, show that the union $\cup_{n \in \mathbb{N}}[a+1 / n, b-1 / n]=$ $(a, b)$. (Why is this not a contradiction?)
+\end{problem}
+
+\begin{proof}[Answer]
+    
+\end{proof}
+
+\begin{problem}
+Show that $G \subset S$ is open if and only if it can be formed as the union of an arbitrary number of open balls.
+\end{problem}
+
+\begin{proof}[Answer]
+    
+\end{proof}
+
+\begin{problem}
+Show that $\mathrm{cl} E$ is always closed. Show in addition that for all closed sets $F$ such that $F \supset E, \operatorname{cl} E \subset F$. Using this result, show that $\operatorname{cl} E$ is equal to the intersection of all closed sets containing $E$.
+\end{problem}
+
+\begin{proof}[Answer]
+    
+\end{proof}
+
+\begin{problem}
+Show that int $E$ is always open. Show also that for all open sets $G$ such that $G \subset E, \operatorname{int} E \supset G$. Using this result, show that int $E$ is equal to the union of all open sets contained in $E$.
+\end{problem}
+
+\begin{proof}[Answer]
+    
+\end{proof}
+
+\begin{problem}
+Show that $E=\mathrm{cl} E$ if and only if $E$ is closed. Show that $E=\operatorname{int} E$ if and only if $E$ is open.
+\end{problem}
+
+\begin{proof}[Answer]
+    
+\end{proof}
+
+\begin{problem}
+Show that int $E$ is always open. Show also that for all open sets $G$ such that $G \subset E, \operatorname{int} E \supset G$. Using this result, show that int $E$ is equal to the union of all open sets contained in $E$.
+\end{problem}
+
+\begin{proof}[Answer]
+    
+\end{proof}
+
+\begin{problem}
+Show that $E=\mathrm{cl} E$ if and only if $E$ is closed. Show that $E=\operatorname{int} E$ if and only if $E$ is open.
+\end{problem}
+
+\begin{proof}[Answer]
+    
+\end{proof}
+
+\begin{problem}
+Let $S, Y$, and $Z$ be metric spaces, and let $f: S \rightarrow Y$ and $g: Y \rightarrow Z$. Show that if $f$ and $g$ are continuous, then so is $h:=g \circ f$.
+\end{problem}
+
+\begin{proof}[Answer]
+    
+\end{proof}
+
+\begin{problem}
+Let $S=\mathbb{R}^{k}$, and let $\rho^{*}(x, y)=0$ if $x=y$ and 1 otherwise. Prove that $\rho^{*}$ is a metric on $\mathbb{R}^{k}$. Which subsets of this space are open? Which subsets are closed? What kind of functions $f: S \rightarrow \mathbb{R}$ are continuous? What kinds of sequences are convergent?
+\end{problem}
+
+\begin{proof}[Answer]
+    
+\end{proof}
+
+\subsection{Completeness}
+
+\begin{problem} Show that a sequence $\left(x_{n}\right)$ in metric space $(S, \rho)$ is Cauchy if and only if $\lim _{n \rightarrow \infty} \sup _{k \geq n} \rho\left(x_{n}, x_{k}\right)=0$
+\end{problem}
+
+\begin{proof}[Answer]
+    
+\end{proof}
+
+\begin{problem}Show that if a sequence $\left(x_{n}\right)$ in metric space $(S, \rho)$ is convergent, then it is Cauchy. Show that if $\left(x_{n}\right)$ is Cauchy, then it is bounded.
+\end{problem}
+
+\begin{proof}[Answer]
+    
+\end{proof}
+
+\begin{problem} Prove \textbf{Lemma 3.2.4}
+    
+    A sequence $\left(x_{n}\right)=\left(x_{n}^{1}, \ldots, x_{n}^{k}\right)$ in $\left(\mathbb{R}^{k}, d_{2}\right)$ is Cauchy if and only if each component sequence $x_{n}^{j}$ is Cauchy in $\mathbb{R}=(\mathbb{R},|\cdot|) .$
+\end{problem}
+
+\begin{proof}[Answer]
+    
+\end{proof}
+
+\subsection{Compactness}
+
+\begin{problem}Exhibit an open cover of $\mathbb{R}^{k}$ that cannot be reduced to a finite subcover. Construct a sequence in $\mathbb{R}^{k}$ with no convergent subsequence.
+\end{problem}
+
+\begin{proof}[Answer]
+    
+\end{proof}
+
+\begin{problem}Prove that every compact subset of a metric space is closed.
+\end{problem}
+
+\begin{proof}[Answer]
+    
+\end{proof}
+
+\begin{problem}Let $(S, \rho)=((0, \infty),|\cdot|)$, and let $K=(0,1] .$ Show that although $K$ is a closed, bounded subset of $S$, it is not precompact in $S$.
+\end{problem}
+
+\begin{proof}[Answer]
+    
+\end{proof}
+
+\begin{problem} Show that every subset of a compact set is precompact, and every closed subset of a compact set is compact.
+\end{problem}
+
+\begin{proof}[Answer]
+    
+\end{proof}
+
+\begin{problem} Show that in any metric space the intersection of an arbitrary number of compact sets and the union of a finite number of compact sets are again compact.
+\end{problem}
+
+\begin{proof}[Answer]
+    
+\end{proof}
+
+\begin{problem} For a more advanced exercise, you might like to try to show that the closure of a precompact set is compact. It follows that every precompact set is bounded. (Why?)
+\end{problem}
+
+\begin{proof}[Answer]
+    
+\end{proof}
+
+\subsection{Optimization, Equivalence}
+
+\begin{problem}
+   \textbf{Theorem 3.2.20}
+    Let $f: S \rightarrow Y$, where $S$ and $Y$ are metric spaces and $f$ is continuous. If $K \subset S$ is compact, then so is $f(K)$, the image of $K$ under $f$.
+    
+    \textbf{Proof.} Take an open cover of $f(K)$. The preimage of this cover under $f$ is an open cover of $K$ (recall theorem $3.1 .33$ on page 43). Since $K$ is compact we can reduce this to a finite cover (theorem 3.2.10). The image of this finite cover under $f$ contains $f(K)$, and hence $f(K)$ is compact.
+
+    Give another proof of theorem 3.2.20 using the sequential definitions
+of compactness and continuity.
+
+\end{problem}
+\begin{proof}[Answer]
+    
+\end{proof}
+
+
+\begin{problem}Let $f: K \rightarrow \mathbb{R}$, where $K$ is compact and $f$ is continuous. Show that if $f$ is strictly positive on $K$, then inf $f(K)$ is strictly positive.
+
+\end{problem}
+\begin{proof}[Answer]
+    
+\end{proof}
+
+\begin{problem} Let $\rho$ and $\rho^{\prime}$ be equivalent on $S$, and let $\left(x_{n}\right) \subset S$. Show that $\left(x_{n}\right)$ is $\rho$ -Cauchy if and only if it is $\rho^{\prime}$ -Cauchy. $^{10}$
+\end{problem}
+\begin{proof}[Answer]
+    
+\end{proof}
+\begin{problem} Let $\rho$ and $\rho^{\prime}$ be equivalent on $S$, and let $A \subset S$. Show that $A$ is $\rho$ complete if and only if it is $\rho^{\prime}$ -complete.
+\end{problem}
+\begin{proof}[Answer]
+    
+\end{proof}
+\begin{problem} $\rho$ and $\rho^{\prime}$ be equivalent on $S$. Show that $(S, \rho)$ and $\left(S, \rho^{\prime}\right)$ share the same closed sets, open sets, bounded sets and compact sets.
+\end{problem}
+\begin{proof}[Answer]
+    
+\end{proof}
+\begin{problem} Let $\rho$ and $\rho^{\prime}$ be equivalent on $S$, and let $f: S \rightarrow \mathbb{R}=(\mathbb{R},|\cdot|) .$ Show that $f$ is $\rho$ -continuous if and only if it is $\rho^{\prime}$ -continuous.
+\end{problem}
+\begin{proof}[Answer]
+    
+\end{proof}
+\begin{problem} Let $S$ be any nonempty set, and let $\rho, \rho^{\prime}$, and $\rho^{\prime \prime}$ be metrics on $S$. Show that equivalence is transitive, in the sense that if $\rho$ is equivalent to $\rho^{\prime}$ and $\rho^{\prime}$ is equivalent to $\rho^{\prime \prime}$, then $\rho$ is equivalent to $\rho^{\prime \prime}$.
+\end{problem}
+\begin{proof}[Answer]
+    
+\end{proof}
+\subsection{Fixed Points}
+\begin{problem} Show that if $S=\mathbb{R}$ and $T: S \rightarrow S$ is decreasing $(x \leq y$ implies $T x \geq T y)$, then $T$ has at most one fixed point.
+\end{problem}
+\begin{proof}[Answer]
+    
+\end{proof}
+\begin{problem} Show that if $T$ is nonexpansive on $S$ then it is also continuous on $S$ (with respect to the same metric $\rho$ ).
+\end{problem}
+\begin{proof}[Answer]
+    
+\end{proof}
+\begin{problem} Show that if $T$ is a contraction on $S$, then $T$ has at most one fixed point in $S$.
+\end{problem}
+\begin{proof}[Answer]
+    
+\end{proof}
+\begin{problem} Let $T$ be uniformly contracting on $S$ with modulus $\lambda$, and let $x_{0} \in S$. Define $x_{n}:=T^{n} x_{0}$ for $n \in \mathbb{N}$. Use induction to show that $\rho\left(x_{n+1}, x_{n}\right) \leq \lambda^{n} \rho\left(x_{1}, x_{0}\right)$
+for all $n \in \mathbb{N}$
+\end{problem}
+\begin{proof}[Answer]
+    
+\end{proof}
+\begin{problem} Let $S:=\mathbb{R}_{+}$ with distance $|\cdot|$, and let $T: x \mapsto x+e^{-x}$. Show that $T$ is a contraction on $S$, and that $T$ has no fixed point in $S$.
+\end{problem}
+\begin{proof}[Answer]
+    
+\end{proof}
 \end{document}
