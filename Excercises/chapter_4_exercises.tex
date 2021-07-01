@@ -1,0 +1,212 @@
+% Documents
+\documentclass{article}
+
+% Packages
+\usepackage[utf8]{inputenc}
+\usepackage[margin = 1in, top=2cm]{geometry}% Margins
+\usepackage[spanish,english]{babel}
+\usepackage{apacite}
+\usepackage[round]{natbib}
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage{svg}
+\usepackage{setspace} % Setting the spacing between lines
+\usepackage{amsthm, amsmath, amsfonts, mathtools, amssymb, bm} % Math packages 
+\usepackage{graphicx}
+\usepackage{pgfplots}
+\usepackage{subfig} % Manipulation and reference of small or sub figures and tables
+\usepackage{hyperref} % To create hyperlinks within the document
+\usepackage{appendix}
+\usepackage{xcolor}
+\usepackage{cancel}
+\usepackage{enumerate}
+\usepackage[shortlabels]{enumitem}
+\usepackage{optidef}
+\usepackage[round]{natbib}
+
+% Options
+\setlength{\parindent}{2em}
+\setlength{\parskip}{0.2em}
+\spacing{1.15}
+\setcounter{section}{3}
+
+% My Enviroments
+\newtheorem{defin}{Definition.}
+\newtheorem{teo}{Theorem. }
+\newtheorem{lema}{Lemma. }
+\newtheorem{coro}{Corolary. }
+\newtheorem{prop}{Proposition. }
+%\theoremstyle{definition}
+\newtheorem{examp}{Example. }
+\newtheorem{problem}{Problem}[section]
+\newtheorem{subproblem}{}[problem]
+% \numberwithin{problem}{subsection} 
+
+% My commands
+\newcommand{\card}{\operatorname{card}}
+\newcommand{\qiq}{\qquad \implies \qquad}
+\newcommand{\qiffq}{\qquad \iff \qquad}
+\newcommand{\qaq}{\qquad \textbf{and} \qquad}
+\newcommand{\qoq}{\qquad \textbf{or} \qquad}
+\newcommand{\settf}{\text{ \emph{:} }}
+\newcommand{\chbox}{\makebox[0pt][l]{$\square$}\raisebox{.15ex}{\hspace{.9em}}}
+\newcommand{\cchbox}{\makebox[0pt][l]{$\square$}\raisebox{.15ex}{\hspace{0.1em}$\checkmark$}}
+
+\title{Economic Dynamics Theory and Computation\newline Excercises Chapter 4}
+\author{Mitchell Valdés-Bobes}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\section{Deterministic Dynamical Systems}
+
+\subsection{The Basic Model}
+
+\begin{problem}\label{problem_1}
+    Show that if $(S, h)$ is a dynamical system, if $x^{\prime} \in S$ is the limit of some trajectory (i.e., $h^{t}(x) \rightarrow x^{\prime}$ as $t \rightarrow \infty$ for some $\left.x \in S\right)$, and if $h$ is continuous at $x^{\prime}$, then $x^{\prime}$ is a fixed point of $h$.    
+\end{problem}
+
+\begin{proof}[Answer]
+    Consider the sequence $\{x_t\}\subset S$ defined as $x_t = h^t(x)$ since $h$ is a continuous function we have:
+    $$x_t = h^t(x) \to x' \qiq h(x_t) = h^{t+1}(x) \to h(x')$$
+    Since the limit of a sequence must be unique we have that
+    $$\boxed{h(x')=x'}$$
+\end{proof}
+
+\begin{problem}
+    Prove that if $h$ is continuous on $S$ and $h(A) \subset A$ (i.e., $h$ maps $A \rightarrow A$ ), then $h(\operatorname{cl} A) \subset \operatorname{cl} A$
+\end{problem}
+
+\begin{proof}[Answer]
+    Let $x\in h(\operatorname{cl}A)$ this means that there is $x'\in \operatorname{cl}A$ such that $h(x')=x$. If $x'\in A$ then $h(x')=x\in A$ if $x'\not\in A$ then there is $\{x_t\}\subset A$ such that $x_t\to x'$. Note that since $h$ is continuous then $h(x_t)\to h(x')=x$ and since $h(x_t)\in A$ for all $t$ then $x\in \operatorname{cl}A$.
+\end{proof}
+
+\begin{problem}
+    Prove that $x^{*}$ is locally stable if and only if there exists an $\epsilon>0$ such that $B\left(\epsilon, x^{*}\right) \subset \Lambda\left(x^{*}\right)$
+\end{problem}
+
+\begin{proof}[Answer]
+    This problem is straightforward we get sufficiency since $B(\varepsilon; x^*)$ is an oppen set and necessity by definition of an open set that mus include a ball of radious $\varepsilon>0$ for some $\varepsilon$.
+\end{proof}
+
+\begin{problem}
+    Prove that if $x^{*}$ is a fixed point of $(S, h)$ to which every trajectory converges, then $x^{*}$ is the only fixed point of $(S, h)$.
+\end{problem}
+
+\begin{proof}[Answer]
+    Prove it by contradiction suppose that there are $x^{*} \neq x^{**}$ fixed points, and that \textbf{every} trayectory convertges to $x^*$, but this must be a contradiction since $x^{**}$ is a fixed point implies that the trayectory $h^t(x^{**}) = x^{**}\to x^{**}$. 
+\end{proof}
+
+\begin{problem}
+    Prove \textbf{Lemma 4.1.7}:
+    
+    If $h$ is a map with continuous derivative $h^{\prime}$ and $x^{*}$ is a fixed point of $h$ with $\left|h^{\prime}\left(x^{*}\right)\right|<1$, then $x^{*}$ is locally stable.
+
+\end{problem}
+
+\begin{proof}[Answer]
+    Consider $x^*$ is a fixed point of $h$; by the definition of derivative we have that for any $x_n \to x^*$: 
+
+    $$\left |h'(x^*)\right| = \lim_{n\to \infty} \frac{\rho(h(x_n) , h(x^*))}{\rho(x_n - x^*)} < 1 $$
+
+    By the definition of limit we have that for every $\varepsilon>0$ there are $N_1$ and $N_2$ such that $\rho(x_n , x^*)<\varepsilon$ for every $n>N_1$ and  $$\lim_{t\to \infty} \frac{\rho(h(x_n) , h(x^*))}{\rho(x_t, x^*)} < 1 $$ for every $n>N_2$. Define $N = \max\{N_1,N_2\}$ and we have that:
+    $$\lim_{n\to \infty} \frac{\rho(h(x_n) , h(x^*))}{\rho(x_n , x^*)} < 1 \qiq \rho(h(x_n) , h(x^*)) < \rho(x_n , x^*) < \varepsilon  $$
+
+    therefore $h(x_n) \to h(x^*)=x^*$. We have proved that for any $x$ \textit{"close enough"} to $x^*$ $h(x)\to x^*$. Pick any such point ($x\in B(\varepsilon; x^*)$) 
+
+    Also note that for any $t>0$
+    $$\rho(h^t(x),x^*)=\rho(h(h^{t-1}(x)), x^*)<\rho(h^{t-1}(x), x^*)$$
+
+    We can define a sequence $\varepsilon_t$ such that $\varepsilon_1 = \varepsilon$, $\varepsilon_t \to 0$ and $$0\leq \rho(h^{t}(x), x^*) < \varepsilon_t \qiq  \rho(h^{t}(x), x^*)\to 0 \qiq h^t(x) \to x^* $$
+    
+    Therefore $x^*$ is locally stable.
+
+\end{proof}
+
+\begin{problem}
+    
+\end{problem}
+
+\begin{proof}[Answer]
+    
+\end{proof}
+
+\begin{problem}
+    
+\end{problem}
+
+\begin{proof}[Answer]
+    
+\end{proof}
+
+\begin{problem}
+    
+\end{problem}
+
+\begin{proof}[Answer]
+    
+\end{proof}
+
+\begin{problem}
+    
+\end{problem}
+
+\begin{proof}[Answer]
+    
+\end{proof}
+
+\begin{problem}
+    
+\end{problem}
+
+\begin{proof}[Answer]
+    
+\end{proof}
+
+
+\begin{problem}
+    
+\end{problem}
+
+\begin{proof}[Answer]
+    
+\end{proof}
+
+
+\begin{problem}
+    
+\end{problem}
+
+\begin{proof}[Answer]
+    
+\end{proof}
+
+
+\begin{problem}
+    
+\end{problem}
+
+\begin{proof}[Answer]
+    
+\end{proof}
+
+
+\begin{problem}
+    
+\end{problem}
+
+\begin{proof}[Answer]
+    
+\end{proof}
+
+
+\begin{problem}
+    
+\end{problem}
+
+\begin{proof}[Answer]
+    
+\end{proof}
+
+\end{document}

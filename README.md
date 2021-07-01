@@ -9,3 +9,4 @@ Notes and Solutions to Exercises
 ## Content
 * [Chapter 2 Excercises](Excercises/chapter_2_exercises.ipynb)
 * [Chapter 3 Excercises](Excercises/chapter_3_exercises.pdf)
+* [Chapter 4 Excercises](Excercises/chapter_4_exercises.pdf)
