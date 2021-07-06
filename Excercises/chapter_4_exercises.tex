@@ -125,88 +125,192 @@
 \end{proof}
 
 \begin{problem}
-    
+    A dynamical system $(S, h)$ is called Lagrange stable if every trajectory is precompact in $S$. In other words, the set $\left\{h^{n}(x): n \in \mathbb{N}\right\}$ is precompact for every $x \in S $(i.e every subsequence of the trajectory has a convergent subsubsequence). Show that if $S$ is a closed and bounded subset of $\mathbb{R}^{n}$, then $(S, h)$ is Lagrange stable for any choice of $h$.
 \end{problem}
 
 \begin{proof}[Answer]
-    
+    Since $S$ is a bounded and closed subset of $\mathbb{R}^n$ then for any $x$ $\left\{h^{n}(x): n \in \mathbb{N}\right\}\subset S$ implies that the sequence $x_n = h^n(x)$ is bounded, then by \textbf{Bolzano-Weierstrass theorem} it must have a convergent subsequence and since $S$ is closed that subsequence must converge to an element of $S$.
 \end{proof}
 
 \begin{problem}
-    
+    Give an example of a dynamical system $(S, h)$ where $S$ is unbounded but $(S, h)$ is Lagrange stable.
 \end{problem}
 
-\begin{proof}[Answer]
-    
+\begin{proof}[Answer] consider the followign two examples.
+    \begin{itemize}
+        \item Trivial example $S = \mathbb{R}$ and $h(x) = c\in \mathbb{R}$ for all $x\in \mathbb{R}$.
+        \item Less trivial, same $S$ but $h(x) = x/c$ for some $|c|>1$. Note that $h^t(x) = x/c^t \to 0$ for any $x\in \mathbb{R}$. 
+    \end{itemize}
+
 \end{proof}
 
 \begin{problem}
-    
+    Let $S=\mathbb{R}$, and let $h: \mathbb{R} \rightarrow \mathbb{R}$ be an increasing function, in the sense that if $x \leq y$, then $h(x) \leq h(y)$. Show that every trajectory of $h$ is a monotone sequence in $\mathbb{R}$ (either increasing or decreasing).
 \end{problem}
 
 \begin{proof}[Answer]
-    
+    Consider an $x\in \mathbb{R}$ such that $h(x)\leq x$ then $h^2(x) \leq h(x)$ iterating forward $h^(t+1)(x) \leq h^t(x)$ for all $t>0$ therefore the trayectory is decreasing. Alternatively if $x\leq h(x)$ we get an increasing trayectory.
 \end{proof}
 
 \begin{problem}
-    
+    Now order points in $\mathbb{R}^{n}$ by setting $x \leq y$ whenever $x_{i} \leq y_{i}$ for $i$ in $\{1, \ldots, n\}$ (i.e., each component of $x$ is dominated by the corresponding component of $y$ ). Let $S=\mathbb{R}^{n}$, and let $h: S \rightarrow S$ be monotone increasing. (The definition is the same.) Show that the same result no longer holds $-h$ does not necessarily generate monotone trajectories.
 \end{problem}
 
 \begin{proof}[Answer]
-    
+    \textcolor{red}{MISSING!!!}
 \end{proof}
 
-\begin{problem}
-    
+\begin{problem}\label{ex10}
+    Let $S=(\mathbb{R},|\cdot|)$ and $h(x)=a x+b$. Prove that
+$$
+h^{t}(x)=a^{t} x+b \sum_{i=0}^{t-1} a^{i} \quad(x \in S, t \in \mathbb{N})
+$$
+(Hint: Use induction.) From this expression, prove that $(S, h)$ is globally stable whenever $|a|<1$, and exhibit the fixed point.
 \end{problem}
 
 \begin{proof}[Answer]
+    Since $$h(x) = h^1(x) = ax + b = a^1 x + b\sum_{i=0}^0a^i $$ we have our base case.
+    Now, assume that for $t = k$
+    $$
+    h^{k}(x)=a^{k} x+b \sum_{i=0}^{k-1} a^{i}
+    $$
+    We will apply $h$ to $h^k$ to obtain $h^{k+1}$ and check that the formula still holds:
     
-\end{proof}
+    \begin{align*}
+        h^{k^+1}(x)=h(h^{k}(x))&= a\left(a^{k} x+b \sum_{i=0}^{k-1} a^{i}\right) + b\\
+                                &= a^{k+1}x + b\sum_{i=0}^{k-1} a^{i+1} + b a^0\\
+                                &=a^{k+1}x + b\sum_{i=0}^{k} a^{i}\\
+    \end{align*}
 
-
-\begin{problem}
-    
-\end{problem}
-
-\begin{proof}[Answer]
-    
-\end{proof}
-
-
-\begin{problem}
-    
-\end{problem}
-
-\begin{proof}[Answer]
-    
-\end{proof}
-
-
-\begin{problem}
-    
-\end{problem}
-
-\begin{proof}[Answer]
-    
+    Then if $|a|<1$ $$\lim_{t\to \infty} h^t(x) = b \sum_{i=0}^\infty a^i = \frac{b}{1-a}\qquad(\forall x \in S)$$
 \end{proof}
 
 
 \begin{problem}
-    
+    Show that the condition $|a|<1$ is also necessary, in the sense that if $|a| \geq 1$, then $(S, h)$ is not globally stable. Show, in particular, that $h^{t}\left(x_{0}\right)$ converges to $x^{*}:=b /(1-a)$ only if $x_{0}=x^{*}$
 \end{problem}
 
 \begin{proof}[Answer]
-    
+    \textcolor{red}{MISSING}
 \end{proof}
 
 
 \begin{problem}
+    Let $(S, h )$ be as in \ref{ex10} Using Banach's Fixed Point Theorem, prove that $(S, h )$ is globally stable whenever $| a | < 1$.
     
 \end{problem}
 
 \begin{proof}[Answer]
+    Recall:
+    \begin{teo}[Banach]
+        Let $T: S \rightarrow S$, where $(S, \rho)$ is a complete metric space. If $T$ is a uniform contraction on $S$ with modulus $\lambda$, then $T$ has a unique fixed point $x^{*} \in S .$ Moreover for every $x \in S$ and $n \in \mathbb{N}$ we have $\rho\left(T^{n} x, x^{*}\right) \leq \lambda^{n} \rho\left(x, x^{*}\right)$, and hence $T^{n} x \rightarrow x^{*}$ as $n \rightarrow \infty$
+    \end{teo}
+\end{proof}
+
+Consider $$\rho(h(x),h(y)) = \rho(ax + b, ay + b) = \left(a\left(y+\frac{b}{a}\right),a\left(y+\frac{b}{a}\right)\right) = |a||x-y| = |a|\rho(x,y)$$
+Then if $|a|<1$ select $|0<\lambda < |a|<1$ and we have $$\rho(h(x),h(y))<\lambda \rho(x,y)$$
+
+We have showed that $T:S\to S$ where $Tx = h(x)$ is a uniform contraction on $S$ therefore it has a unique fixed point $x^*$ and $h^n(x)\to x^*$ as $n\to \infty$.
+
+\begin{problem}
+    Let $S:=(0, \infty)$ with $\rho(x, y):=|\ln x-\ln y| .$ Prove that $\rho$ is a metric on $S$ and that $(S, \rho)$ is a complete metric space. Consider the growth model $k_{t+1}=$ $h\left(k_{t}\right)=s A k_{t}^{\alpha}$, where $s \in(0,1], A>0$ and $\alpha \in(0,1) .$ Convert this into a dynamical system on $(S, \rho)$, and prove global stability using theorem Banach's Fixed Point Theorem.
+\end{problem}
+
+\begin{proof}[Answer]
+    We start by proving the $\rho$ is a metric:
+    \begin{enumerate}[(i)]
+        \item $\rho(x,y) = 0 \iff |\ln x - \ln y|=0 \iff \ln x = \ln y \iff \exp(\ln x) = \exp(\ln y)\iff x = y$
+        \item $\rho(x,y) =  |\ln x - \ln y| =  |\ln y - \ln x| = \rho(y,x) \qquad \forall x,y\in S$
+        \item $\rho(x,y) =  |\ln x - \ln y| = |(\ln x - \ln z) - (\ln y -\ln z)| \leq |\ln x - \ln z| + |\ln y -\ln z| = \rho(x,z) + \rho(y,z)\qquad \forall x,y,z\in S$
+    \end{enumerate}
+
+    Next we show that $(S,\rho)$ is a Complete Space. Consider a function $f:(S,\rho)\to (\mathbb{R}, |\cdot|)$ such that $f(x) = \ln x$  and a Cauchy sequence $\{x_n\}$:
     
+    $$\forall \varepsilon> 0 \quad \exists N \in \mathbb{N} \mid \rho(x_n,x_m) = |\ln x - \ln y| = |f(x) - f(y)| < \varepsilon \quad \forall n,m > N $$
+
+    then $\{f(x_n)\}$ is a Cauchy sequence in $(\mathbb{R},|\cdot|)$ which is a compelte space thus $f(x_n) \to y = \ln x $ for some $x\in (0, \infty)$. Using the definition of limit we have:
+    
+    $$\forall \varepsilon > 0 \quad \exists N\in \mathbb{N}\mid |f(x_n) - y| = |\ln x_n - \ln x| = \rho(x_n,x) < \varepsilon     \quad \forall n> N$$
+
+    We have showed that $x_n \to x$ in $(S, \rho$), therefore $(S, \rho$) is complete.
+
+    Let $h: S \to S$ where $h(x) = sAx^\alpha$ consider $x,y\in S$:
+    $$\rho(h(x),h(y)) = |\ln (sAx^\alpha) - \ln (sAx^\alpha)| = |\cancel{\ln s} + \cancel{\ln A} + \alpha \ln x - \cancel{\ln s}  - \cancel{\ln A} - \alpha \ln y| = |\alpha(\ln x - \ln y)| = \alpha \rho(x,y)$$
+
+    Since $\alpha \in (0,1)$ we can select $0<\lambda < \alpha < 1$ to get $$\rho(h(x), h(y))< \lambda \rho(x,y)$$ Since we have proved that $h$ is a uniform contraction with modulus $\lambda$ then we can apply Banach's Fixed Point Theorem to prove that $h$has only one fixed point $x^*$ and that $\lim_{t\to \infty} h^t(x) = x^*$ thus concluding the prove that the dynamical system $(S, h)$ is globally stable.
+
+
+\end{proof}
+
+
+\begin{problem}\label{prob414}
+    Consider the mapping $h(x)=E x+b$ where $E$ is an $n \times n$ matrix and $b \in \mathbb{R}^{n}$, let $\|\cdot\|$ be any norm on $\mathbb{R}^{n}$, and define
+$$
+\lambda:=\max \left\{\|E x\|: x \in \mathbb{R}^{n},\|x\|=1\right\}
+$$
+If you can, prove that the maximum exists. Using the properties of norms and linearity of $E$, show that $\|E x\| \leq \lambda\|x\|$ for all $x \in \mathbb{R}^{n}$. Show in addition that if $\lambda<1$, then $\left(\mathbb{R}^{n}, h\right)$ is globally stable.
+\end{problem}
+
+\begin{proof}[Answer]
+    We start by showing that the maximum exists. First define the set $A = \{x\in \mathbb{R}^n\mid \| x\| = 1 \}$, clearly $A$ is a bounded and closed, therefore compact (by Heine-Borel); next consider the continuous function $f:A\to \mathbb{R}$ defined as $f(x) = \|E x\|$, since $f$ is a continous function on a compact set it attains it's supremum.
+
+    Next we will show that $h$ is a uniform contraction of modulus $\lambda$. $$\|Ex\| = \frac{\|x\|}{\|x\|}\|Ex\| =\left\| E \left(\frac{x}{\|x\|} \right)\right\|  \|x\| \leq \lambda \|x\| $$
+
+    Showing that $(\mathbb{R}, h)$ is globally stable is just an aplicaction of Banach's Fixed Point Theorem.
+\end{proof}
+
+
+\begin{problem}\label{prob415}
+    Prove that Long and Plosser's system is stable in the following way:
+Let $A=\left(a_{i j}\right)$ be an $n \times n$ matrix where the sum of any of the rows of $A$ is strictly less than 1 (i.e., $\max _{i} \alpha_{i}<1$, where $\left.\alpha_{i}:=\sum_{j}\left|a_{i j}\right|\right)$. Using the norm $\|\cdot\|_{\infty}$ in \ref{prob414}, show that for $A$ we have $\lambda<1$. Now argue that in Long and Plosser's model, $\left(y_{t}\right)$ converges to a limit $y^{*}$, which is independent of initial output $y_{0}$, and, moreover, is the unique solution to the equation $y^{*}=A y^{*}+b .$
+\end{problem}
+
+\begin{proof}[Answer]
+    Consider $x\in S$ such that $\|x\|_\infty = \max_{i = 1 \ldots n } |x_i| = 1$ and $\|Ax\|_\infty$ since $x = (x_1, \ldots, x_n) = \sum_{i=1}^n x_i e_i$ where $e_i$ is the canonical base of $\mathbb{R}^n$ then
+
+    $$\|Ax\|_\infty  =  \left\|A\sum_{i=1}^n x_i e_i\right\| \leq \sum_{i=1}^n|x_i|\|Ae_i\|_\infty \leq \|x\|_\infty \sum_{i=1}^{n} \|Ae_i\|_\infty$$
+
+    Notice that $$Ae_i = \left(\begin{array}{c} a_{i1} \\ \ldots \\ a_{in}\end{array}\right) =  \sum_{j=1}^n a_{ij}e_j $$
+
+    then $$\|Ae_i\|_\infty \leq \sum_{j=1}^n |a_{ij}|\cancelto{1}{\|e_j\| } \leq  \max _{i} \alpha_{i} < 1 $$
+
+    Thus we have that $$\lambda:=\max \left\{\|A x\|: x \in \mathbb{R}^{n},\|x\|=1\right\} < 1$$
+
+    Now consider $$h(y) = Ay+ b $$ we know that 
+    \begin{align*}
+    h^{t}(y_0) = A^t y_0 + b\sum_{i=0}^{t-1}A^i
+    \end{align*}
+
+    First note that $$0\leq \lim_{t\to\infty} \|A^t y_0\| \leq \lim_{t\to\infty} \|y_0\| \left\|A^t\left(\frac{y}{\|y\|}\right)\right\| \leq \lim_{t\to \infty} \lambda^t\|y_0\| = 0$$
+    therefore we have showed that the limit does not depend on the initial output $y_0$.
+
+    Next consider $y^* = Ay^* + b$ and 
+    \begin{align*}
+    y^* -  b\sum_{i=0}^{t-1}A^i &= Ay^* + b -  b\sum_{i=0}^{t-1}A^i = Ay^* - b\sum_{i=1}^{t-1}A^i = A\left(y^* - b\sum_{i=1}^{t-1}A^{i-1}  \right) = A\left(y^* - b\sum_{i=0}^{t-2}A^{i}  \right) \\
+        &=A\left(Ay^* + b -  b\sum_{i=0}^{t-1}A^i\right)=A\left(Ay^* - b\sum_{i=1}^{t-2}A^i\right) = A^2\left(y^* - b\sum_{i=1}^{t-2}A^{i-1}  \right) = A\left(y^* - b\sum_{i=0}^{t-3}A^{i}  \right) \\
+        &\ldots\\
+        &=A^{t-1}(y^* - b) = A(Ay^* +b - b) = A^t y^*
+    \end{align*}
+
+    Finally $$\lim_{t\to\infty}\|h^t(y_0) - y^*\|_{\infty} = \|\lim_{t\to\infty} h^t(y_0) - y^*\|_{\infty} = \left\|\lim_{t\to\infty}y^* -  b\sum_{i=0}^{t-1}A^i\right\|_{\infty} = \|\lim_{t\to\infty} A^t y^*\|_{\infty}= \lim_{t\to\infty} \|A^t y^*\|_{\infty} = 0$$
+
+    Therefore $$h^t(y_0) \to y^* \qquad \forall y_0 \in \mathbb{R}^n $$
+\end{proof}
+
+\begin{problem}
+    Let $B=\left(b_{i j}\right)$ be an $n \times n$ matrix where the sum of any of the columns of $B$ is strictly less than 1 (i.e., $\max _{j} \beta_{j}<1$, where $\left.\beta_{j}:=\sum_{i}\left|b_{i j}\right|\right) .$ Using the norm $\|\cdot\|_{1}$ in \ref{prob414}, show that for $B$ we have $\lambda<1$. Conclude that if $h(x)=B x+b$, then $\left(\mathbb{R}^{n}, h\right)$ is globally stable.
+\end{problem}
+
+\begin{proof}[Answer]
+    Follows for Problem \ref{prob415}
+\end{proof}
+
+\begin{problem}
+    Suppose that $h$ is uniformly contracting on complete space $S$, so $(S, h)$ is globally stable. Prove that if $A \subset S$ is nonempty, closed and invariant under $h$ (i.e., $h(A) \subset A)$, then the fixed point of $h$ lies in $A$.
+\end{problem}
+
+\begin{proof}[Answer]
+    From Banach's Fixed Point Theorem $h$ has a unique fixed point $x^*$ and $h^n(x)\to x^*$ for any $x \in S$ in particular select $x\in A$ and define $x_n = h^n(x)$, since $A$ is invariant under $h$ then $\{x_n\}\subset A$ and since $x_n \to x^*$ and $A$ is closed then $x^*\in A$. 
 \end{proof}
 
 \end{document}

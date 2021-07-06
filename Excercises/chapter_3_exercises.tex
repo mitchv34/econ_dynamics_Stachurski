@@ -297,7 +297,12 @@ Prove that $\|\cdot\|_{p}$ is a norm on $\mathbb{R}^{k}$ for $p=1$ and $p=\infty
 \end{problem}
 
 \begin{proof}[Answer]
-    
+    Let $$B(\varepsilon ; x) = \{y\in S\mid \rho(x,y)<\varepsilon\}$$
+    Pick any $y\in B(\varepsilon ; x)$; define $\delta=\varepsilon - \rho(y,x)>0$ as before we have thtat:
+    $$B(\delta ; y) = \{z\in S\mid \rho(z,y)<\delta\}$$
+    Next we will show that $z\in B(\varepsilon ; x)$ thus $B(\delta ; y)\subset B(\varepsilon ; x)$ thus completing the proof.
+
+    $$\rho(x,z) \leq \rho(z,y) + \rho(x,y) < \delta + \rho(x,y) = \varepsilon - \rho(y,x) - rho(x,y)=\varepsilon \qiq z\in B(\varepsilon; x)$$
 \end{proof}
 
 \begin{problem}
@@ -430,11 +435,17 @@ Let $S=\mathbb{R}^{k}$, and let $\rho^{*}(x, y)=0$ if $x=y$ and 1 otherwise. Pro
 
 \subsection{Completeness}
 
-\begin{problem} Show that a sequence $\left(x_{n}\right)$ in metric space $(S, \rho)$ is Cauchy if and only if $\lim _{n \rightarrow \infty} \sup _{k \geq n} \rho\left(x_{n}, x_{k}\right)=0$
+\begin{problem} 
+    Show that a sequence $\left(x_{n}\right)$ in metric space $(S, \rho)$ is Cauchy if and only if $$\lim _{n \rightarrow \infty} \sup _{k \geq n} \rho\left(x_{n}, x_{k}\right)=0$$
 \end{problem}
 
 \begin{proof}[Answer]
-    
+    \begin{align*}
+        \left(x_{n}\right) \text{ is Cauchy} &\qiffq \forall \varepsilon>0 \exists N\in \mathbb{N}\mid \rho(x_n, x_k) < \varepsilon \: \forall \: n,k > N \\
+        &\qiffq \forall \varepsilon>0 \exists N\in \mathbb{N}\mid \sup \{ \rho(x_n, x_k) \mid n,k > N\} < \varepsilon \\
+        &\qiffq \forall \varepsilon>0 \exists N\in \mathbb{N}\mid \sup \{ \rho(x_n, x_k) \mid k > n\} < \varepsilon \: \forall n> N\\
+        &\qiffq \sup_{k\geq n}\rho(x_n, x_k) \to 0
+    \end{align*}
 \end{proof}
 
 \begin{problem}Show that if a sequence $\left(x_{n}\right)$ in metric space $(S, \rho)$ is convergent, then it is Cauchy. Show that if $\left(x_{n}\right)$ is Cauchy, then it is bounded.
